@@ -70,7 +70,7 @@ router.get('/cad', function (req, res) {
 
 //Rota que ira acessar o form de usuarios e series para inserir novos usuários
 router.post('/cad', function (req, res) {
-  db.query('INSERT INTO users(nome,sobrenome,username,idade) VALUES(?,?,?,?)', [req.body.nome, req.body.sobrenome, req.body.username, req.body.idade, req.body.password], function (erro) {
+  db.query('INSERT INTO cad_user(nome,sobrenome,username, idade, password) VALUES(?,?,?,?,?)', [req.body.nome, req.body.sobrenome,req.body.username, req.body.idade, req.body.password], function (erro) {
     if (erro) {
       res.status(400).send('Erro: ' + erro)
     }
