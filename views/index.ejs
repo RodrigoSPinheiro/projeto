@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Projetos Filmes e Séries</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+  <link a href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+
+<body>
+  <h1>Projetos Filmes e Séries</h1>
+  <h4 id="welcome"></h4>
+  <div id="login"></div>
+  <div id="logout"></div>
+  <div id="caduser"></div>
+
+  <ul id="rotas">
+    <li id="listar"></li>
+    <li id="cadastro"></li>
+  </ul>
+  <a class="btn btn-primary" href="/cad">Cadastre-se</a>'
+  <script>
+    function getCookie(c_name) {
+      var i, x, y, ARRcookies = document.cookie.split(";");
+      for (i = 0; i < ARRcookies.length; i++) {
+        x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
+        y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
+        x = x.replace(/^\s+|\s+$/g, "");
+        if (x == c_name) {
+          return unescape(y);
+        }
+      }
+    }
+    $(document).ready(function () {
+      let jwt = getCookie('x-access-token')
+      let user = getCookie('user')
+
+      if (jwt) {
+        document.getElementById("login").innerHTML = '<a class="btn btn-danger" href="/logout">logout</a>'
+        document.getElementById("listar").innerHTML = '<a href="/listar">Listagem de Filmes</a>'
+        document.getElementById("cadastro").innerHTML = '<a href="/add">Cadastro</a>'
+      } else {
+        document.getElementById("login").innerHTML = '<a class="btn btn-primary" href="/login">login</a>'
+      }
+
+      if (user) {
+        document.getElementById("welcome").innerHTML = 'Bem vindo ' + user;
+      }
+    })
+  </script>
+
+</body>
+
+</html>
